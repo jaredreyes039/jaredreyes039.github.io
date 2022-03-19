@@ -57,6 +57,7 @@ nav{
     position: relative;
     background-color: black;
     display: flex;
+    align-items: center;
     z-index: 99;
     min-height: 30px;
 }
