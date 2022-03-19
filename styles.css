@@ -15,23 +15,12 @@
     box-shadow: 0px 5px 10px black;
     pointer-events: none;
 }
-.header>h1{
-    color: gold;
-    font-size: 10vw;
-    text-align: center;
-    letter-spacing: 5vw;
-}
-
-.DVLogo:hover{
-    transform:scale(2) !important;
-}
-
-.demoSVG:hover{
-    transform:scale(1.5) !important;
-}
 
 
-/* About */
+
+
+
+/* About Me */
 .aboutContainer{
     display: flex;
     justify-content: center;
@@ -53,6 +42,8 @@
     font-size: 2vw;
 }
 
+/* Nav Bar */
+
 nav{
     position: relative;
     background-color: black;
@@ -65,7 +56,21 @@ nav>ul{
     display: flex;
     flex-direction: row;
 }
+a{
+    text-decoration: none !important;
+    color: gold !important;
+    font-size: 2vw !important;
+}
+a:visited{
+    color: gold !important;
+    opacity: 1 !important;
 
+}
+
+a:hover{
+    opacity: 80%;
+    color: goldenrod;
+}
 
 
 .navBrand{
@@ -76,38 +81,39 @@ nav>ul{
     margin-left: 2vw;
     margin-right: 2vw;
 }
-a{
-    text-decoration: none !important;
-    color: goldenrod !important;
+
+.navBrand>svg{
+    padding-bottom: 1vw;
+    padding-right: 2vw;
 }
-a:hover{
-    opacity: 80%;
-    color: goldenrod !important
-}
+
 
 nav>ul>li{
     margin-left: 2vw;
     list-style: none;
 }
 
-header>.welcome{
-    width: 50%;
-    text-align: center;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    
-}
-header>.welcome>h3{
-    color: gold;
-    font-size: 3vw;
-}
-header>.welcome>article{
+/* Sliding Header */
+
+.headbar{
+    width: fit-content;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 2vw;
+    margin: auto;
     color: goldenrod;
-    font-size: 2vw;
+    height: fit-content;
+    grid-area: hr;
 }
 
-.skilsBg{
+.headbar>h1{
+    font-size: 5vw;
+    color: gold;
+}
+
+/* Principles Grid */
+
+.princGr{
     padding-top: 5vh;
     display: grid;
     width: fit-content;
@@ -120,55 +126,40 @@ header>.welcome>article{
     "s1 s2 s3"
     ;
     text-align: center;
-    row-gap: 3vh;
-    column-gap: vw;
 }
 
 
-.skill>article{
+.princ>article{
     line-height: 6vw;
     font-size: 2rem;
     margin-left: 1vw;
      margin-right: 1vw;
 
 }
-.skill > h1{
+.princ > h1{
       
     font-size: 5vw ;
     padding-top: 1vh;
     padding-bottom: 1vh;
 }
-.skill:nth-last-of-type(1){
+.princ:nth-last-of-type(1){
     grid-area: s1;
 }
-.skill:nth-of-type(2){
+.princ:nth-of-type(2){
     grid-area: s2;
 
 }
-.skill:nth-of-type(3){
+.princ:nth-of-type(3){
     grid-area: s3;
 
 }
 
-.headbar{
-    width: fit-content;
-    padding-left: 100px;
-    padding-right: 100px;
-    margin: auto;
-    color: goldenrod;
-    height: fit-content;
-    grid-area: hr;
-}
-
-.headbar>h1{
-    font-size: 5vw;
-    color: gold;
-}
-
-.skillhead{
+.princhead{
     color: goldenrod;
 }
 
+
+/* Experience Grid */
 .expgrid{
     padding-top: 5vh;
     display: grid;
@@ -201,7 +192,11 @@ header>.welcome>article{
     letter-spacing: 1px;
     line-height: 6vw;
     font-size: 2vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
 }
+
+/* Front-End Languages */
 .feLangList{
       
     list-style: none;
@@ -226,6 +221,7 @@ header>.welcome>article{
     font-size: 2.5rem;
 }
 
+/* Backend Languages */
 .beLangList{
       
     list-style: none;
@@ -250,18 +246,19 @@ header>.welcome>article{
 
 }
 
-
-a{
-    text-decoration: none !important;
-    color: gold;
-    font-size: 2vw !important;
+/* Web Dev Logo */
+.DVLogo{
+    width: 15vw;
 }
-a:visited{
-    color: gold;
-    opacity: 1 !important;
-
+.demoSVG:hover{
+    transform:scale(1.5) !important;
+}
+.DVLogo:hover{
+    transform:scale(2) !important;
 }
 
+
+/* Contact Form */
 .contactMe{
     padding-top: 10vh;
 }
@@ -304,16 +301,7 @@ textarea::placeholder{
     margin-top: 3vh;
     margin-bottom: 3vh;
 }
-.DVLogo{
-    width: 15vw;
-}
-.DVLogo:hover{
-    transform:scale(1.5) !important;
-}
 
-.demoSVG:hover{
-    transform:scale(1.5) !important;
-}
 
 .contactForm>.heading{
     font-size: 4vw;
@@ -322,6 +310,7 @@ textarea::placeholder{
     flex-basis: 30%;
 }
 
+/* Media Query: Mobile and Tablet Range */
 
 @media only screen and (max-width: 1200px) {
 
@@ -337,14 +326,9 @@ textarea::placeholder{
     
     /* About */
     .aboutContainer{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
         margin-bottom: 20px;
     }
     .aboutContainer>.heading{
-        text-align: center;
         font-size: 8vw;
     }
     .aboutContainer > article{
@@ -354,20 +338,14 @@ textarea::placeholder{
         line-height: 10vw;
     }
     
+    /* Navbar */
+
     nav{
-        position: relative;
-        background-color: black;
-        display: flex;
-        z-index: 99;
         min-height: 30px;
     }
-    
-    
-    
-    .navBrand{
-        align-self: center;
-        margin-left: 2vw;
-        margin-right: 2vw;
+
+    .navBrand>h1{
+        display: none;
     }
 
     nav>ul>li>a{
@@ -375,15 +353,16 @@ textarea::placeholder{
         font-size: 5vw !important;
     }
     
-    
-    .skill > h1{
+    /* Principles */
+
+    .princ > h1{
           
         font-size: 6vw ;
         padding-top: 1vh;
         padding-bottom: 1vh;
     }
     
-    
+    /* Experience */
 
     .exp > h2{
         font-size: 8vw;
@@ -398,20 +377,19 @@ textarea::placeholder{
         margin-right: 2vw;
     }
 
-    a{
-        text-decoration: none;
-        color: gold;
-    }
-    a:hover{
-        opacity: 80%;
-        color: gold !important
-    }
     .feLangList{
         font-size: 6vw;
     }
     .beLangList{
         font-size: 6vw;
     }
+
+    .DVLogo{
+        width: 250px;
+    }
+
+
+    /* Contact Form */
     .contactForm{
         width: 100%;
         height: fit-content;
@@ -452,17 +430,10 @@ textarea::placeholder{
         margin-bottom: 3vh;
     }
 
-    .DVLogo{
-        width: 250px;
-    }
-
     .contactForm>.heading{
         font-size: 8vw;
         color: gold;
         background-color: darkcyan;
         flex-basis: 30%;
-    }
-    .navBrand>h1{
-        display: none;
     }
 }

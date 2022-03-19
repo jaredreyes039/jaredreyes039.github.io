@@ -2,6 +2,7 @@ let header = document.querySelector('.header')
 let about = document.querySelector('.aboutContainer')
 tl = gsap.timeline({ease: "power0.out"})
 
+
 about.addEventListener('mouseenter', (e)=>{
     e.preventDefault();
     tl.to(header, {y:-1000})
