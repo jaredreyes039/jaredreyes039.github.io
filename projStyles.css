@@ -40,7 +40,64 @@ nav>ul>li{
 }
 
 
+/* Proj Grid */
+.projectGrid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 10vw);
+}
+.projectGrid::before{
+    grid-column: 1/1;
+    grid-row: 1/1;
+}
 
+.projSqrX{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: darkcyan;
+    color: goldenrod;
+    line-height: 5px;
+}
+.projSqrX>p>a{
+    font-size: 1vw !important;
+}
+.projSqrX>p>a:visited{
+    color: gold;
+    opacity: 100%;
+}
+.projSqrX:hover{
+    opacity: 80%;
+    background-color: cyan;
+    transform: rotate3d(1, 1, 1, 10deg);
+}
+.projSqrY{
+    display: flex;
+    line-height: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: goldenrod;
+    color: darkcyan;
+}
+.projSqrY>p>a{
+    font-size: 1vw !important;
+}
+.projSqrY>h1>a:visited{
+    color: darkcyan !important;
+    opacity: 100%;
+}
+.projSqrY>p>a:visited{
+    color: darkcyan !important;
+    opacity: 100%;
+}
+.projSqrY:hover{
+    opacity: 80%;
+    background-color: gold;
+    transform: rotate3d(1, 1, 1, 10deg);
+}
 
 /* Bootstrap Carousel */
 body{
@@ -54,13 +111,7 @@ a:hover{
     opacity: 80%;
     color: gold !important
 }
-.projSpotlight{
-    width: 100%;
-    position: absolute;
-    top:0;
-    left:50%;
-    transform: translate(-50%, 0%);
-}
+
 
 .projslide>.carousel-caption>p{
     color: goldenrod !important;
@@ -123,7 +174,8 @@ nav>ul>li{
 }
 
 /* Media Query: Mobile and Tablet */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1400px) {
+
     /* Navbar */
     nav>ul>li{
         font-size: 5vw;
@@ -139,6 +191,25 @@ nav>ul>li{
     h2{
         color: goldenrod;
         font-size: 15vw !important;
+    }
+    .projectGrid{
+        font-weight: 700;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(autofill, minmax(1fr, 100%))
+    }
+    .projSqrX>p>a{
+        font-size: 3vw !important;
+    }
+    .projSqrY>p>a{
+        font-size: 3vw !important;
+    }
+    .projSqrX{
+        flex-direction: row;
+    }
+    .projSqrY{
+        flex-direction: row;
     }
 
 }
