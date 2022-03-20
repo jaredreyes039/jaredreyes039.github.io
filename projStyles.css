@@ -58,9 +58,10 @@ nav>ul>li{
     justify-content: center;
     align-items: center;
     background-color: darkcyan;
-    color: goldenrod;
-    line-height: 5px;
+    color: gold;
+    line-height: 15px;
 }
+
 .projSqrX>p>a{
     font-size: 1vw !important;
 }
@@ -75,7 +76,7 @@ nav>ul>li{
 }
 .projSqrY{
     display: flex;
-    line-height: 5px;
+    line-height: 15px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -98,8 +99,18 @@ nav>ul>li{
     background-color: gold;
     transform: rotate3d(1, 1, 1, 10deg);
 }
+.projSqrY>p{
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+}
+.projSqrX>h1{
+    font-size: 2vw;
+    line-height: 1.5vw;
+}
+.projSqrX:nth-of-type(7)>h1{
+    font-size: 1.5vw;
+}
 
-/* Bootstrap Carousel */
 body{
     background-color: goldenrod;
 }
@@ -112,65 +123,8 @@ a:hover{
     color: gold !important
 }
 
-
-.projslide>.carousel-caption>p{
-    color: goldenrod !important;
-}
 p{
     color: black;
-    font-size: 2vw;
-}
-h5{
-    color: goldenrod;
-    font-size: 4vw;
-}
-.projslide{
-    width: 100%;
-    overflow-y: hidden !important;
-    background-color: darkcyan;
-    text-align: center;
-    display: flex;
-    align-items: center !important;
-    justify-content: center !important;
-}
-.projslide > h2{
-    width: 90%;
-    font-size: 10vw;
-    color: gold;
-}
-
-/* Navbar */
-
-nav{
-    position: relative;
-    background-color: black;
-    display: flex;
-    z-index: 99;
-    min-height: 30px;
-}
-
-
-
-.navBrand{
-    color: gold;
-    align-self: center;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    font-size: 3vw;
-    display: flex;
-    flex-direction: row;
-}
-nav>ul{
-    display: flex;
-    justify-content: space-evenly;
-}
-nav>ul>li{
-    align-self: center;
-    list-style: none;
-    color: goldenrod;
-    opacity: 0.7;
-    margin-right: 2vw;
-    font-size: 2vw;
 }
 
 /* Media Query: Mobile and Tablet */
@@ -187,29 +141,67 @@ nav>ul>li{
     .navBrand>h1{
         display: none;
     }
-    /* Slide Header */
-    h2{
-        color: goldenrod;
-        font-size: 15vw !important;
-    }
+
     .projectGrid{
         font-weight: 700;
         width: 100%;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: repeat(autofill, minmax(1fr, 100%))
+        grid-template-rows: repeat(10, 50vw);
+    }
+    .projSqrX>h1>a{
+        font-size: 10vw !important;
+    }
+    .projSqrX>p{
+        font-size: 6vw !important;
+    }
+    .projSqrY>h1>a{
+        font-size: 10vw !important;
+    }
+    .projSqrY>p{
+        font-size: 6vw !important;
+    }
+    .projSqrY>h1{
+        font-size: 10vw !important;
     }
     .projSqrX>p>a{
-        font-size: 3vw !important;
+        font-size: 6vw !important;
     }
     .projSqrY>p>a{
-        font-size: 3vw !important;
+        font-size: 6vw !important;
     }
+    .projSqrX:nth-of-type(7)>h1{
+        font-size: 10vw;
+    }
+    
     .projSqrX{
-        flex-direction: row;
+        flex-direction: colum;
+        text-align: center;
     }
     .projSqrY{
-        flex-direction: row;
+        flex-direction: column;
+        text-align: center;
+    }
+    .projectGrid::before{
+        grid-column: unset;
+        grid-row: unset;
+    }
+    .projSqrY:hover{
+        opacity: 80%;
+        background-color: gold;
+        transform: none;
+    }
+    .projSqrX:hover{
+        opacity: 80%;
+        background-color: cyan;
+        transform: none;
+    }
+    .projSqrX>h1{
+        font-size: 10vw;
+        line-height: normal;
+    }
+    .projSqrY>p{
+        line-height: normal;
     }
 
 }
