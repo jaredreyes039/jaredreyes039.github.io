@@ -107,7 +107,7 @@ nav>ul>li{
     font-size: 2vw;
     line-height: 1.5vw;
 }
-.projSqrX:nth-of-type(7)>h1{
+.projSqrY:nth-of-type(8)>h1{
     font-size: 1.5vw;
 }
 
@@ -170,7 +170,7 @@ p{
     .projSqrY>p>a{
         font-size: 6vw !important;
     }
-    .projSqrX:nth-of-type(7)>h1{
+    .projSqrY:nth-of-type(8)>h1{
         font-size: 10vw;
     }
     
