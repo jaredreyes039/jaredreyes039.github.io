@@ -1,156 +1,190 @@
-// THREE.JS Animation for Header
 
-// Setting Scene, Cam, and Renderer
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+const raycaster = new THREE.Raycaster();
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / document.getElementById('txtHeader').getBoundingClientRect().height, 0.1, 10000 );
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth,  document.getElementById('txtHeader').getBoundingClientRect().height);
-document.getElementById('header').appendChild( renderer.domElement );
-renderer.render( scene, camera );
-
-// Adding Controls
-
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enabled = false
-camera.position.z = -300
-controls.update();
-
-// Change Scene Background
-
-scene.background = new THREE.Color('white')
-
-// Cubes
-
-let dodecgeo = new THREE.BoxGeometry(100, 100, 100)
-let dodecmat = new THREE.MeshBasicMaterial({wireframe: true, color: 'goldenrod'})
-let dodec = new THREE.Mesh(dodecgeo, dodecmat)
-let dodecgeo2 = new THREE.BoxGeometry(100, 100, 100)
-let dodecmat2 = new THREE.MeshBasicMaterial({wireframe: true, color: 'darkcyan'})
-let dodecclone = new THREE.Mesh(dodecgeo2, dodecmat2)
-scene.add(dodec, dodecclone)
-
-// Cube Scaling and Rotation for Positioning
-
-dodecclone.scale.set(1.1, 1.1, 1.1)
-dodecclone.rotation.x = Math.PI/3
-dodecclone.rotation.z = Math.PI/3
+let height = window.innerHeight;
+let width = window.innerWidth;
 
 
-// Adding Cubes to Randomized Positions
 
-let group = new THREE.Group();
+function generatePlane(){
+    planeMesh.geometry.dispose();
+    planeMesh.geometry = new THREE.PlaneGeometry(world.plane.width, world.plane.height, world.plane.widthSegments, world.plane.heightSegments)
+    
 
-for(let i = 0; i< 10; i++){
-    let clone1 = dodec.clone();
-    let clone2 = dodecclone.clone();
-    clone1.position.x = Math.random()*(500+500+1)-500
-    clone1.position.y = Math.random()*(200+200+1)-200
-    clone1.position.z = Math.random()*(200+200+1)-200
+    const colors = []
+    for (let i = 0; i< planeMesh.geometry.attributes.position.count; i++){
+        colors.push(0.5, 0, 0.4)
+    }
+    planeMesh.geometry.setAttribute('color',
+        new THREE.BufferAttribute(new Float32Array(colors), 3)
+    )
+    let randomValues = []
+    const {array} = planeMesh.geometry.attributes.position
+    for (let i = 0; i<array.length; i+=3){
+        const x = array[i]
+        const y = array[i+1]
+        const z = array[i+2]
 
-    clone2.position.x = clone1.position.x
-    clone2.position.y = clone1.position.y
-    clone2.position.z = clone1.position.z
+        array[i + 2] = z + Math.random()
 
-
-    group.add(clone1, clone2)
-    scene.add(group)
+    }
+    planeMesh.geometry.attributes.position.originalPosition = planeMesh.geometry.attributes.position.array
+    planeMesh.geometry.attributes.position.randomValues = randomValues
+    
+    for (let i = 0; i<array.length; i++){
+    if(i%3 === 0){
+    const x = array[i]
+    const y = array[i+1]
+    const z = array[i+2]
+    array[i] = x + (Math.random() - 0.5)*3
+    array[i+1] = y + (Math.random() - 0.5)*3
+    array[i + 2] = z + ((Math.random()-0.5)*3)}
+    randomValues.push(Math.random()*(Math.PI*2))
 }
 
-// Animation rotations
+}
 
-function animate() {
-	requestAnimationFrame( animate );
-	renderer.render( scene, camera );
+//cameraPersp = (angle of view, aspect ratio (w/h), near clipping plane, far clipping pane)
+//nearClipping means how close an object has to be to the camera to be clipped
+//farClipping cannot see past furthest clip plane
+const camera = new THREE.PerspectiveCamera(90, width/height, 0.1, 1000 )
+const renderer = new THREE.WebGL1Renderer();
+const controls = new OrbitControls(camera, renderer.domElement)
+controls.minDistance = 5
+controls.maxDistance = 50
+controls.enableRotate = false
 
-    dodec.rotation.x += 0.01
-    dodec.rotation.y -= 0.01
-    dodec.rotation.z += 0.01
-    dodecclone.rotation.x -= 0.01
-    dodecclone.rotation.y += 0.01
-    dodecclone.rotation.z -= 0.01
-    group.children.map((child)=>{
-        child.rotation.x += Math.random()/100
-        child.rotation.y += Math.random()/100
-        child.rotation.z -= Math.random()/100
+//Now I can make use of my declared Class constants
 
-    })
+//render.domElement has to be an appended child to whatever is storing scene
+renderer.setSize(width, height)
+renderer.setPixelRatio(devicePixelRatio);
+document.body.appendChild(renderer.domElement)
+
+// const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
+// const boxMaterial = new THREE.MeshBasicMaterial({color: 0x00aa00})
+// const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial)
+// scene.add(boxMesh) 
+
+//BasicMats do NOT interact w/ light
+//PhongMats DO interact w/ light
+//to view phong, a light is NECESSARY
+const light = new THREE.DirectionalLight(0xffffff, 0.5)
+const light2 = new THREE.DirectionalLight(0xffffff, 0.5)
+light2.position.set(0,-1,-1)
+light.position.set(0, 1, 1)
+scene.add(light, light2)
+const planeGeo = new THREE.PlaneGeometry(300, 300, 150, 150);
+const planeMat = new THREE.MeshPhongMaterial({side: THREE.DoubleSide, flatShading: THREE.FlatShading, vertexColors: true});
+const planeMesh = new THREE.Mesh(planeGeo, planeMat)
+scene.add(planeMesh)
+planeMesh.position.z = 0.25
+
+//Copy of original positions of vertices in plane
+let randomValues = []
+const {array} = planeMesh.geometry.attributes.position
+planeMesh.geometry.attributes.position.originalPosition = planeMesh.geometry.attributes.position.array
+planeMesh.geometry.attributes.position.randomValues = randomValues
+for (let i = 0; i<array.length; i++){
+    if(i%3 === 0){
+    const x = array[i]
+    const y = array[i+1]
+    const z = array[i+2]
+    array[i] = x + (Math.random() - 0.5)*3
+    array[i+1] = y + (Math.random() - 0.5)*3
+    array[i + 2] = z + ((Math.random()-0.5)*3)}
+    randomValues.push(Math.random()-0.5)
+}
+
+
+const colors = []
+
+for (let i = 0; i< planeMesh.geometry.attributes.position.count; i++){
+    colors.push(0.8549, 0.6471, 0.1255)
+}
+planeMesh.geometry.setAttribute('color',
+    new THREE.BufferAttribute(new Float32Array(colors), 3)
+)
+//Loop changing vertices colors
+
+
+//Mouse object for obtaining x and y coords to realign axis
+const mouse = {
+    x: undefined,
+    y: undefined,
+}
+
+camera.position.z = 50
+let frame = 0
+
+function animate(){
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera)
+    frame += 0.01
+    // boxMesh.rotation.x += 0.01
+    // boxMesh.rotation.y += 0.01
+
+    raycaster.setFromCamera(mouse, camera)
+    const intersects = raycaster.intersectObject(planeMesh)
+    const {array, originalPosition, randomValues} = planeMesh.geometry.attributes.position
+
+    for(let i=0; i<array.length;i+=3){
+        array[i] = originalPosition[i] + Math.cos(frame + randomValues[i])*0.005
+        array[i+1] = originalPosition[i+1] + Math.sin(frame + randomValues[i+1])*0.001
+    }
+
+    planeMesh.geometry.attributes.position.needsUpdate = true;
+    //Loop for selecting ind. faces and changing vertices colors in those faces
+    if(intersects.length>0){
+        intersects[0].object.geometry.attributes.color.setX(intersects[0].face.a, 0)
+        intersects[0].object.geometry.attributes.color.setY(intersects[0].face.a, 0.54)
+        intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.a, 0.54)
+        intersects[0].object.geometry.attributes.color.setX(intersects[0].face.b, 0)
+        intersects[0].object.geometry.attributes.color.setY(intersects[0].face.b, 0.54)
+        intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.b, 0.54)
+        intersects[0].object.geometry.attributes.color.setX(intersects[0].face.c, 0)
+        intersects[0].object.geometry.attributes.color.setY(intersects[0].face.c, 0.54)
+        intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.c, 0.54)
+
+        intersects[0].object.geometry.attributes.color.needsUpdate = true
+        const initialColor = {
+            r: 0.8549,
+            g: 0.6471,
+            b: 0.1255,
+        }
+        const hoverColor = {
+            r: 0,
+            g: 0.54,
+            b: 0.54,
+        }
+        gsap.to(hoverColor, {r: initialColor.r, g: initialColor.g, b: initialColor.b, onUpdate: ()=>{
+            intersects[0].object.geometry.attributes.color.setX(intersects[0].face.a, hoverColor.r)
+        intersects[0].object.geometry.attributes.color.setY(intersects[0].face.a, hoverColor.g)
+        intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.a, hoverColor.b)
+        intersects[0].object.geometry.attributes.color.setX(intersects[0].face.b, hoverColor.r)
+        intersects[0].object.geometry.attributes.color.setY(intersects[0].face.b, hoverColor.g)
+        intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.b, hoverColor.b)
+        intersects[0].object.geometry.attributes.color.setX(intersects[0].face.c, hoverColor.r)
+        intersects[0].object.geometry.attributes.color.setY(intersects[0].face.c, hoverColor.g)
+        intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.c, hoverColor.b)
+        }}) 
+        
+    }
 }
 animate()
 
 
-// Anime.JS Animations
 
-// ExpGrid Slide-In Animation when In View
-// Uses Observer API
-
-let expGrid = document.getElementById('expGrid')
-const gridObserver = new IntersectionObserver(entries =>{
-    anime({
-        targets: '.exp',
-        translateX: [-1000, 0],
-        opacity: [0,1],
-        delay: anime.stagger(100),
-    })
+//By putting the mouse in its own obj I can access the e listen return from outside the e listen
+addEventListener('mousemove', (e)=>{
+    mouse.x = (e.clientX / width)*2-1;
+    mouse.y = -(e.clientY/ height)*2 + 1;   
 })
-gridObserver.observe(expGrid)
+let doit;
 
-
-// ExpGridHeader Fade In
-
-let expGridHeader = document.getElementById('expgridHeader')
-let gridHeadObserver = new IntersectionObserver(entries=>{
-    anime({
-        targets: '.expgridHeader',
-        opacity: [0,1],
-        easing: 'easeInOutSine',
-    })
+window.addEventListener('resize', function(){
+    renderer.setSize(this.innerWidth, this.innerHeight)
+    controls.minDistance = 5
+    controls.maxDistance = 50
 })
-
-gridHeadObserver.observe(expGridHeader)
-
-// About Container Fade In
-
-let aboutContainer = document.getElementById('aboutContainer')
-let aboutObserver = new IntersectionObserver(entries=>{
-    anime({
-        targets: '.aboutContainer',
-        opacity: [0,1],
-        easing: 'easeInOutSine',
-    })
-})
-
-aboutObserver.observe(aboutContainer)
-
-// Principles Grid Fade In
-
-let princGrid = document.getElementById('princGrid')
-let princObserver = new IntersectionObserver(entries=>{
-    anime({
-        targets: '.princGr',
-        opacity: [0,1],
-        easing: 'easeInOutSine',
-    })
-    anime({
-        targets: '.princ',
-        translateY: [0, 10],
-        loop: true,
-        direction: 'alternate',
-        easing: 'easeInOutSine',
-    })
-})
-
-princObserver.observe(princGrid)
-
-
-// Contact Form Fade In
-
-let contactMe = document.getElementById('contactMe')
-let contactObserver = new IntersectionObserver(entries=>{
-    anime({
-        targets: '.contactMe',
-        opacity: [0,1],
-        easing: 'easeInOutSine',
-    })
-})
-
-contactObserver.observe(contactMe)

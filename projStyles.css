@@ -1,81 +1,45 @@
 *{
-    font-family: 'Teko', sans-serif;
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+    font-family: 'Unica One', cursive !important;
 }
 
-header{
-    text-align: center;
-
-}
-#header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-}
-header>h1{
-    font-size: 8vw;
-    position: relative;
-    z-index: 99;
-    color: darkcyan;
-}
-header>h2{
-    font-size: 4vw;
-    position: relative;
-    z-index: 99;
-    color: goldenrod;
-}
-header>.twitter>h4{
-    font-size: 3vw;
-    position: relative;
-    z-index: 99;
-}
-header>.twitter{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    z-index: 99;
-    align-items: center;
-
-}
-header>.twitter>i{
-    color: darkcyan;
-    font-size: 3vw;
-    position: relative;
-    z-index: 99;
-    margin-right: 1vw;
-}
 /* Navbar */
 
 nav{
-    background-color: black;
     position: relative;
+    background-color: black;
+    display: flex;
     z-index: 99;
-}
-.nav{
-    display: inline-flex;
-    flex-wrap: wrap;
-    list-style: none;
-    gap: 2vw;  
-    text-align: right;
-}
-.nav-brand{
-    width: 86%;
-    display: inline-flex;
-    color: gold;
-    font-size: 3vw;
-    letter-spacing: 1vw;
-    margin-left: 1vw;  
+    min-height: 30px;
 }
 
-.nav-item>a{
-    color: gold;
-    text-decoration: none;
-    font-size: 2vw;
-    text-align: right;
+.navBrand>svg{
+    padding-bottom: 1vw;
+    padding-right: 2vw;
 }
+
+.navBrand{
+    color: gold;
+    align-self: center;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    font-size: 3vw;
+    display: flex;
+    flex-direction: row;
+}
+nav>ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+nav>ul>li{
+    align-self: center;
+    list-style: none;
+    color: goldenrod;
+    opacity: 0.7;
+    margin-right: 2vw;
+    font-size: 2vw;
+}
+
+
 /* Proj Grid */
 .projectGrid{
     width: 100%;
@@ -94,16 +58,15 @@ nav{
     justify-content: center;
     align-items: center;
     background-color: darkcyan;
-    color: goldenrod;
-    line-height: 5vh;
-    text-align: center;
+    color: gold;
+    line-height: 15px;
 }
 
 .projSqrX>p>a{
-    font-size: 2vw !important;
+    font-size: 1vw !important;
 }
 .projSqrX>p>a:visited{
-    color: goldenrod;
+    color: gold;
     opacity: 100%;
 }
 .projSqrX:hover{
@@ -113,16 +76,15 @@ nav{
 }
 .projSqrY{
     display: flex;
-    line-height: 5vh;
+    line-height: 15px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: goldenrod;
     color: darkcyan;
-    text-align: center;
 }
 .projSqrY>p>a{
-    font-size: 2vw !important;
+    font-size: 1vw !important;
 }
 .projSqrY>h1>a:visited{
     color: darkcyan !important;
@@ -138,28 +100,27 @@ nav{
     transform: rotate3d(1, 1, 1, 10deg);
 }
 .projSqrY>p{
-    font-size: 2vw;
-    line-height: 5vh;
+    font-size: 1.5vw;
+    line-height: 1.5vw;
 }
 .projSqrX>h1{
     font-size: 2vw;
-    line-height: 5vh;
-}
-.projSqrY>h1{
-    font-size: 2vw;
-    line-height: 5vh;
+    line-height: 1.5vw;
 }
 .projSqrY:nth-of-type(8)>h1{
     font-size: 1.5vw;
 }
 
+body{
+    background-color: goldenrod;
+}
 a{
     text-decoration: none;
-    color: goldenrod;
+    color: gold;
 }
 a:hover{
     opacity: 80%;
-    color: goldenrod !important
+    color: gold !important
 }
 
 p{
