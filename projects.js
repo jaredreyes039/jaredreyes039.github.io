@@ -1,7 +1,4 @@
 
-$(document).ready(function(){
-
-
 // THREE.JS Animation for Header
 let width = window.innerWidth
 let height = document.getElementById('txtHeader').getBoundingClientRect().height
@@ -103,4 +100,3 @@ animate()
         opacity: [0,1],
         delay: anime.stagger(100, {grid: [10, 10], from: 'center'})
     })
-})
