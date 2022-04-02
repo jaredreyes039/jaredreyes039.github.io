@@ -311,7 +311,9 @@ textarea::placeholder{
     header>.twitter>i{
         font-size: 8vw;
     }
-
+    #header{
+        overflow-x: hidden;
+    }
     .nav-brand{
         width: 65%;
         display: inline-flex;
