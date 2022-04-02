@@ -1,5 +1,6 @@
 
 // THREE.JS Animation for Header
+
 let width = window.innerWidth
 let height = document.getElementById('txtHeader').getBoundingClientRect().height
 
@@ -7,7 +8,7 @@ let height = document.getElementById('txtHeader').getBoundingClientRect().height
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 45, width/height, 0.1, 10000 );
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize( width/height);
+renderer.setSize( width,height);
 document.getElementById('header').appendChild( renderer.domElement );
 renderer.render( scene, camera );
 
