@@ -402,4 +402,17 @@ textarea::placeholder{
     .contactForm>.heading{
         font-size: 15vw;
     }
+    .princGr{
+        display: grid;
+        width: 80%;
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas: 
+        "hr"
+        "s1"
+        "s2"
+        "s3"
+        ;
+    }
+
 }
