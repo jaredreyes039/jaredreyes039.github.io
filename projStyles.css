@@ -87,14 +87,19 @@ nav{
     grid-column: 1/1;
     grid-row: 1/1;
 }
-
+.projectGrid:nth-child(2n){
+    background-color: darkcyan;
+    color: goldenrod;
+}
+.projectGrid:nth-child(2n)>p>a:visited{
+    color: goldenrod;
+    opacity: 100%;
+}
 .projSqrX{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: darkcyan;
-    color: goldenrod;
     line-height: 5vh;
     text-align: center;
 }
@@ -102,10 +107,7 @@ nav{
 .projSqrX>p>a{
     font-size: 2vw !important;
 }
-.projSqrX>p>a:visited{
-    color: goldenrod;
-    opacity: 100%;
-}
+
 .projSqrX:hover{
     opacity: 80%;
     background-color: cyan;
@@ -121,8 +123,10 @@ nav{
     color: darkcyan;
     text-align: center;
 }
+
 .projSqrY>p>a{
     font-size: 2vw !important;
+    color: darkcyan;
 }
 .projSqrY>h1>a:visited{
     color: darkcyan !important;
@@ -149,21 +153,16 @@ nav{
     font-size: 2vw;
     line-height: 5vh;
 }
-.projSqrY:nth-of-type(8)>h1{
-    font-size: 1.5vw;
-}
-
 a{
     text-decoration: none;
-    color: goldenrod;
+    color: inherit;
 }
 a:hover{
     opacity: 80%;
-    color: goldenrod !important
 }
 
 p{
-    color: black;
+    color: inherit;
 }
 
 /* Media Query: Mobile and Tablet */

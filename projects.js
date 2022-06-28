@@ -16,8 +16,9 @@ renderer.render( scene, camera );
 window.addEventListener('resize', function(){
     height = document.getElementById('txtHeader').getBoundingClientRect().height;
     width = this.window.innerWidth
-    renderer.setSize( width, height, true);
-    camera.aspect.toFixed = width/height
+    camera.aspect = width/height;
+    camera.updateProjectionMatrix();
+    renderer.setSize( width, height);
 })
 
 
