@@ -462,8 +462,8 @@ textarea::placeholder{
         ;
     }
     .landing-text{
-        width: 80%;
-        font-size: 80%;
+        width: 100%;
+        font-size: 70%;
     }
 }
 
@@ -477,9 +477,9 @@ textarea::placeholder{
     transform: translate(-50%,-50%);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    box-shadow: 0 4px 30px darkcyan;
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
+    box-shadow: 0 4px 30px hsla(326, 94%, 50%, 0.636);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 2.5%;
     animation: fadeIn 2500ms ease-in-out;
