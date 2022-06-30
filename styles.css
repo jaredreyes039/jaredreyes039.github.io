@@ -468,6 +468,7 @@ textarea::placeholder{
 }
 
 .landing-text{
+    width: 80%;
     position: absolute;
     z-index: 1;
     color: whitesmoke;
