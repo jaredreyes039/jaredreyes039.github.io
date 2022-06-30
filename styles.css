@@ -347,7 +347,7 @@ textarea::placeholder{
     margin-bottom: 2.5%;
 }
 
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
     header>h1{
         font-size: 15vw;
     }
@@ -465,6 +465,9 @@ textarea::placeholder{
         width: 100%;
         font-size: 70%;
     }
+    .landing-text>button>a{
+        text-decoration: underline solid 2px goldenrod !important;
+    }
 }
 
 .landing-text{
@@ -513,11 +516,5 @@ textarea::placeholder{
     color: goldenrod;
     text-decoration: none;
     transition: all 250ms ease-in-out;
-    border-bottom: 2px solid transparent;
-
-}
-
-.landing-text>button:hover>a{
-    border-bottom: 2px solid goldenrod;
-
+    text-decoration: underline solid 10px goldenrod;
 }
