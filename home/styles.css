@@ -252,6 +252,9 @@ nav{
     letter-spacing: 0.5vw;
     
 }
+.princ>h2{
+    font-size: 200%;
+}
 .princ:nth-of-type(n){
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -261,7 +264,7 @@ nav{
     border: 1px solid rgba(255, 255, 255, 0.3);
     width: 75%;
     margin-left: 12.5%;
-    padding: 1%;
+    padding: 2.5%;
 }
 .princ:nth-of-type(1){
     grid-area: s1;
@@ -434,9 +437,18 @@ textarea::placeholder{
         margin-top: 5%;
         margin-bottom: 5%;
     }
-    
+    .princ:nth-of-type(n){
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+    }
     .princ > h1{
         font-size: 200% ;
+    }
+    .princ>h2{
+        font-size: 175%;
+    }
+    .contactForm{
+        margin: 5%;
     }
     input, textarea{
         font-size: 200%;

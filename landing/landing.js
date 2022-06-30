@@ -42,7 +42,7 @@ const helper = new THREE.PointLightHelper(pointlight, 10, 'red')
 scene.add(pointlight)
 
 const loader = new THREE.GLTFLoader();
-loader.load("heart_textured.glb", (gltf)=>{
+loader.load("../models/heart_textured.glb", (gltf)=>{
     scene.add(gltf.scene)
     console.log(gltf)
     gltf.scene.scale.set(150,150,150)
