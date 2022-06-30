@@ -254,6 +254,7 @@ nav{
 }
 .princ>h2{
     font-size: 200%;
+    font-weight: 100 !important;
 }
 .princ:nth-of-type(n){
     background: rgba(255, 255, 255, 0.2);
