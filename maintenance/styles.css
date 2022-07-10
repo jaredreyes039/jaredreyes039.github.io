@@ -1,0 +1,13 @@
+@media only screen and (max-width: 768px) {
+    *{
+        font-size: 0.85em;
+    }
+    div{
+        width: 75%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    *{
+        font-size: 0.75em;
+    }
+}
